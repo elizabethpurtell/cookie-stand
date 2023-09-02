@@ -1,0 +1,146 @@
+@charset
+/* Global settings */
+
+body {
+  margin: 50px;
+  border: #003049;
+  border-style: dashed;
+  border-width: 5px;
+  font-family: 'Roboto', sans-serif;
+  padding: 50px;
+  background-color: rgb(218, 106, 106);
+}
+
+header {
+  display: flex;
+  /* padding-bottom: 20px; */
+  /* margin-top: 10px; */
+  height: 70px;
+  max-width: 100%;
+  background-color: rgb(132, 121, 232);
+  /* align-items: center; */
+  margin: 20px;
+  padding: 20px;
+}
+
+/* Text */
+h1 {
+  font-size: 4em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 2em;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1em;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1em;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+nav {
+  display: flex;
+  padding-top: 30px;
+}
+
+.topNav ul {
+  list-style-type: none;
+  padding: 50px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.topNav li {
+  float: right;
+}
+
+.topNav li a {
+  color: #2d2d2d;
+  padding: 10px 10px;
+  padding-left: 50px;
+  text-decoration: none;
+}
+
+
+main {
+  display: contents;
+  margin: 50px;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+}
+
+
+main section {
+  display: flex;
+  /* align-items: center; */
+  /* margin: 20px; */
+  padding: 20px;
+}
+
+.primaryImg {
+  max-width: 100%;
+  border: #2d2d2d 2px solid;
+  align-items: center;
+  padding: 60px;
+}
+
+
+main article {
+  max-width: 100%;
+  padding: 60px;
+}
+
+#container {
+  background-color: #606060;
+  width: 90%;
+  height: 700px;
+  margin: 0 auto;
+  border: 5px solid #003049;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#container div {
+  width: 200px;
+  height: 200px
+}
+
+div:nth-of-type(3) {
+  align-self: flex-end;
+  padding: 20px;
+}
+
+/* scrollable container */
+p {
+  width: 450px;
+  height: 300px;
+  overflow: auto;
+}
+
+
+/* HOVER AND TRANSITION */
+button:hover {
+  background-color: blue;
+}
+
+button {
+  transition: 350ms;
+}
+
+
+footer {
+  height: 150px;
+  background-color: #444;
+}
