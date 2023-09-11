@@ -102,11 +102,11 @@ main article {
 }
 
 body {
-  background-color: #b4bec8;
+  background-color: #b0fffb;
 }
 
 header {
-  background-color: #797d80;
+  background-color: #ffffff;
   height: 100px;
 }
 
@@ -138,7 +138,7 @@ main>h2 {
 
 article {
   border: 5px double #020005;
-  background-color: #75abe9;
+  background-color: #e975d6;
   padding: 30px;
   margin-top: 30px;
 }
@@ -159,7 +159,6 @@ p {
 ul {
   font-size: 1.75em;
   font-family: 'Archivo', sans-serif;
-  list-style-type: "🐾   ";
   list-style-position: inside;
   margin-bottom: 15px;
 }
@@ -177,7 +176,7 @@ img {
 
 table * {
   font-family: 'Archivo', sans-serif;
-  background-color: #797d80;
+  background-color: #d3f8fe;
   border: 1px double #020005;
   padding: 8px;
 }
@@ -198,12 +197,12 @@ footer {
   text-align: right;
   padding-right: 10px;
   height: 100px;
-  background-color: #797d80;
+  background-color: #202020;
   margin-top: 30px;
 }
 
 #container {
-  background-color: #606060;
+  background-color: #890b0b;
   width: 90%;
   height: 700px;
   margin: 0 auto;
