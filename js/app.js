@@ -5,7 +5,8 @@ const storeArray = [];
 
 // *** WINDOW INTO THE DOM ***
 
-let storeSection = document.getElementById('storeSection');
+// let storeSection = document.getElementById('storeSection');
+let table = document.querySelector('table');
 
 let hours = ['6:00AM', '7:00AM', '8:00AM', '9:00AM', '10:00AM', '11:00AM', '12:00PM', '1:00PM', '2:00PM', '3:00PM', '4:00PM', '5:00PM', '6:00PM', '7:00PM', '8:00PM'];
 
@@ -17,25 +18,9 @@ function renderAll() {
     storeArray[i].render();
   }
 }
-let rowHeading = document.createElement('tr');
-table.appendChild(hours);
-
-//  *** CONSTRUCTOR FUNCTION ***
-
-function Store(name, minCust, maxCust, avgCookieBought) {
-  this.name = name;
-  this.minCust = minCust;
-  this.maxCust = maxCust;
-  this.avgCookieBought = avgCookieBought;
-  this.cookiesBought = 0;
-  this.cookiesTotal = 0;
-}
 
 // *** HEADER ROW FUNCTION ***
 function headerFunction() {
-  let table = document.createElement('table');
-  storeSection.appendChild(table);
-
   let headerRow = document.createElement('tr');
   table.appendChild(headerRow);
 
@@ -53,8 +38,46 @@ function headerFunction() {
   totalHeaderCell.textContent = 'Daily Location Total';
   headerRow.appendChild(totalHeaderCell);
 }
-headerFunction();
 
+// *** FOOTER ROW FUNCTION ***
+
+function footerFunction() {
+  // let footer = document.createElement('footer');
+  // table.appendChild();
+  let footerRow = document.createElement('tr');
+  table.appendChild(footerRow);
+
+  let footerCell = document.createElement('th'); //CREATE total CELL
+  footerCell.textContent = 'Totals';
+  footerRow.appendChild(footerCell);
+
+  for (let i = 0; i < hours.length; i++) { //slow loop
+    let total = 0;
+    for (let j = 0; j < storeArray.cookiesTotal; j++) { //fast loop
+      total += storeArray[j][i];
+    }
+  }
+  // targeting seattle 6am totals
+  // you would type: cityArray[0].randomCookie[0]
+  // tokyo: cityArray[1].randomCookie[0]
+  // dubai: cityArray[2].randomCookie[0]
+  // what is our slow loop: hours array
+  // what is the fast loop: city array
+  // still need to find the total for all the stores, last cell
+  // create a row
+  // create a cell that will populate with each hourly from each location
+}
+
+//  *** CONSTRUCTOR FUNCTION ***
+
+function Store(name, minCust, maxCust, avgCookieBought) {
+  this.name = name;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookieBought = avgCookieBought;
+  this.cookiesBought = [];
+  this.cookiesTotal = 0;
+}
 
 //  *** PROTOTYPE METHODS -inherits ***
 
@@ -62,101 +85,33 @@ Store.prototype.randomCustomerGenerator = function (minCust, maxCust) {
   return Math.floor(Math.random() * (maxCust - minCust + 1) + minCust);
 };
 
-Store.prototype.render = function(){
-  let chRow = document.createElement('tr');
-
-  let locationName = document.createElement('td');
-  locationName.textContent = this.name;
-  chRow.appendChild(locationName);
-
+Store.prototype.getCookieCalc = function () {
   for (let i = 0; i < hours.length; i++) {
     let hourlyCookie = this.avgCookieBought * this.randomCustomerGenerator(this.minCust, this.maxCust);
     this.cookiesBought.push(Math.ceil(hourlyCookie));
     this.cookiesTotal = this.cookiesTotal + Math.ceil(hourlyCookie);
   }
-}
-
-
-
-
-
-
+};
 
 Store.prototype.render = function () {
   this.getCookieCalc();
 
-  let articleEle = document.createElement('article');
-  storeSection.appendChild(articleEle);
+  let chRow = document.createElement('tr');
+  table.appendChild(chRow);
 
-  let storeHeading = document.createElement('h2'); // html creation
-  storeHeading.innerText = this.name; // context
-  articleEle.appendChild(storeHeading); // dom addition
-
-  let storeUL = document.createElement('ul');
-  articleEle.appendChild(storeUL);
+  let locationName = document.createElement('td');
+  locationName.textContent = this.name;
+  chRow.appendChild(locationName);
 
   for (let i = 0; i < this.cookiesBought.length; i++) {
-    let avgCookieByHourLI = document.createElement('li');
-    avgCookieByHourLI.innerText = `${hours[i]}: ${this.cookiesBought[i]}`;
-    storeUL.appendChild(avgCookieByHourLI);
+    let avgCookieByHourTD = document.createElement('td');
+    avgCookieByHourTD.innerText = this.cookiesBought[i];
+    chRow.appendChild(avgCookieByHourTD);
   }
-  let totalLI = document.createElement('li');
-  totalLI.innerText = `Total: ${this.cookiesTotal}`;
-  storeUL.appendChild(totalLI);
+  let totalTD = document.createElement('td');
+  totalTD.innerText = this.cookiesTotal;
+  chRow.appendChild(totalTD);
 };
-
-
-
-// *** FOOTER ROW FUNCTION ***
-
-function footerFunction(){
-  let footer = document.createElement('footer');
-  
-}
-
-
-
-//  *** TABLE ***
-
-
-
-// tr is a row
-// let rowHeading = document.createElement('tr');
-// table.appendChild(rowHeading);
-// th is a heading
-// let storeName = document.createElement('th');
-// storeName.textContent = 'Location';
-// rowHeading.appendChild(storeName);
-let storeName = document.createElement('th'); // html creation
-storeName.innerText = this.name; // context
-rowHeading.appendChild(storeName); // dom addition
-
-let rowHourlyValues = document.createElement('tr');
-table.appendChild(hours);
-for (let i = 0; i < this.cookiesBought.length; i++) {
-  let avgCookieByHourLI = document.createElement('tr');
-  avgCookieByHourLI.innerText = `${this.cookiesBought[i]}`;
-  rowHourlyValues.appendChild(avgCookieByHourLI);
-}
-
-
-let totalValue = document.createElement('tr');
-table.appendChild(cookiesTotal);
-// td is table data
-let storeHours = document.createElement('td');
-storeHours.textContent = this.storeHours;
-rowValues.appendChild(storeHours);
-
-// let goodWithDogValue = document.createElement('td');
-// goodWithDogValue.textContent = this.isGoodWithDogs;
-// rowValues.appendChild(goodWithDogValue);
-
-// let goodWithKidValue = document.createElement('td');
-// goodWithKidValue.textContent = this.isGoodWithKids;
-// rowValues.appendChild(goodWithKidValue);
-// };
-
-
 
 
 // *** EXECUTABLE CODE (ON PAGE LOAD) ***
@@ -168,232 +123,6 @@ let paris = new Store('Paris', 20, 38, 2.3);
 let lima = new Store('Lima', 2, 16, 4.6);
 
 storeArray.push(seattle, tokyo, dubai, paris, lima);
+headerFunction();
 renderAll();
-
-
-// seattle.render();
-// tokyo.render();
-// dubai.render();
-// paris.render();
-// lima.render();
-
-
-//  *** OBJECT LITERALS ***
-
-// let seattle = {
-//   name: 'Seattle',
-//   minCust: 23,
-//   maxCust: 65,
-//   avgCookieBought: 6.3,
-//   cookiesBought: [], // this is the container to store our simulated cookies
-//   cookiesTotal: 0,
-
-// randomCustomerGenerator: function (minCust, maxCust) {
-//   return Math.floor(Math.random() * (maxCust - minCust + 1) + minCust); // inclusive min and max from MDN
-// },
-// getCookieCalc: function () {
-//   for (let i = 0; i < hours.length; i++) {
-//     let hourlyCookie = this.avgCookieBought * this.randomCustomerGenerator(this.minCust, this.maxCust);
-//     this.cookiesBought.push(Math.ceil(hourlyCookie));
-//     this.cookiesTotal = this.cookiesTotal + Math.ceil(hourlyCookie);
-//   }
-// },
-//   render: function () {
-//     this.getCookieCalc();
-
-//     let articleEle = document.createElement('article');
-//     storeSection.appendChild(articleEle);
-
-//     let storeHeading = document.createElement('h2'); // html creation
-//     storeHeading.innerText = this.name; // context
-//     articleEle.appendChild(storeHeading); // dom addition
-
-//     let seattleUL = document.createElement('ul');
-//     articleEle.appendChild(seattleUL);
-
-//     for (let i = 0; i < this.cookiesBought.length; i++) {
-//       let avgCookieByHourLI = document.createElement('li');
-//       avgCookieByHourLI.innerText = `${hours[i]}: ${this.cookiesBought[i]}`;
-//       seattleUL.appendChild(avgCookieByHourLI);
-//     }
-//     let totalLI = document.createElement('li');
-//     totalLI.innerText = `Total: ${this.cookiesTotal}`;
-//     seattleUL.appendChild(totalLI);
-//   }
-
-// };
-// console.log(seattle);
-
-// let tokyo = {
-//   name: 'Tokyo',
-//   minCust: 3,
-//   maxCust: 24,
-//   avgCookieBought: 1.2,
-//   cookiesBought: [], // container storing simulated cookies
-//   cookiesTotal: 0, // the total amount of simulated cookies
-
-//   randomCustomerGenerator: function (minCust, maxCust) {
-//     return Math.floor(Math.random() * (maxCust - minCust + 1) + minCust); // inclusive min and max from MDN
-//   },
-//   getCookieCalc: function () {
-//     for (let i = 0; i < hours.length; i++) {
-//       let hourlyCookie = this.avgCookieBought * this.randomCustomerGenerator(this.minCust, this.maxCust);
-//       this.cookiesBought.push(Math.ceil(hourlyCookie));
-//       this.cookiesTotal = this.cookiesTotal + Math.ceil(hourlyCookie);
-//     }
-//   },
-//   render: function () {
-//     this.getCookieCalc();
-
-//     let articleEle = document.createElement('article');
-//     storeSection.appendChild(articleEle);
-
-//     let storeHeading = document.createElement('h2'); // html creation
-//     storeHeading.innerText = this.name; // context
-//     articleEle.appendChild(storeHeading); // dom addition
-
-//     let tokyoUL = document.createElement('ul');
-//     articleEle.appendChild(tokyoUL);
-
-//     for (let i = 0; i < this.cookiesBought.length; i++) {
-//       let avgCookieByHourLI = document.createElement('li');
-//       avgCookieByHourLI.innerText = `${hours[i]}: ${this.cookiesBought[i]}`;
-//       tokyoUL.appendChild(avgCookieByHourLI);
-//     }
-//     let totalLI = document.createElement('li');
-//     totalLI.innerText = `Total: ${this.cookiesTotal}`;
-//     tokyoUL.appendChild(totalLI);
-//   }
-
-// };
-// console.log(tokyo);
-
-// let dubai = {
-//   name: 'Dubai',
-//   minCust: 11,
-//   maxCust: 38,
-//   avgCookieBought: 3.7,
-//   cookiesBought: [], // container for simulated cookies
-//   cookiesTotal: 0, // total sim cookies
-
-//   randomCustomerGenerator: function (minCust, maxCust) {
-//     return Math.floor(Math.random() * (maxCust - minCust + 1) + minCust);
-//   },
-//   getCookieCalc: function () {
-//     for (let i = 0; i < hours.length; i++) {
-//       let hourlyCookie = this.avgCookieBought * this.randomCustomerGenerator(this.minCust, this.maxCust);
-//       this.cookiesBought.push(Math.ceil(hourlyCookie));
-//       this.cookiesTotal = this.cookiesTotal + Math.ceil(hourlyCookie);
-//     }
-//   },
-//   render: function () {
-//     this.getCookieCalc();
-
-//     let articleEle = document.createElement('article');
-//     storeSection.appendChild(articleEle);
-
-//     let storeHeading = document.createElement('h2');
-//     storeHeading.innerText = this.name;
-//     articleEle.appendChild(storeHeading);
-
-//     let dubaiUL = document.createElement('ul');
-//     articleEle.appendChild(dubaiUL);
-
-//     for (let i = 0; i < this.cookiesBought.length; i++) {
-//       let avgCookieByHourLI = document.createElement('li');
-//       avgCookieByHourLI.innerText = `${hours[i]}: ${this.cookiesBought[i]}`;
-//       dubaiUL.appendChild(avgCookieByHourLI);
-//     }
-//     let totalLI = document.createElement('li');
-//     totalLI.innerText = `Total: ${this.cookiesTotal}`;
-//     dubaiUL.appendChild(totalLI);
-//   }
-// };
-// console.log(dubai);
-
-// let paris = {
-//   name: 'Paris',
-//   minCust: 20,
-//   maxCust: 38,
-//   avgCookieBought: 2.3,
-//   cookiesBought: [], // container for simulated cookies
-//   cookiesTotal: 0, // total sim cookies
-
-//   randomCustomerGenerator: function (minCust, maxCust) {
-//     return Math.floor(Math.random() * (maxCust - minCust + 1) + minCust);
-//   },
-//   getCookieCalc: function () {
-//     for (let i = 0; i < hours.length; i++) {
-//       let hourlyCookie = this.avgCookieBought * this.randomCustomerGenerator(this.minCust, this.maxCust);
-//       this.cookiesBought.push(Math.ceil(hourlyCookie));
-//       this.cookiesTotal = this.cookiesTotal + Math.ceil(hourlyCookie);
-//     }
-//   },
-//   render: function () {
-//     this.getCookieCalc();
-
-//     let articleEle = document.createElement('article');
-//     storeSection.appendChild(articleEle);
-
-//     let storeHeading = document.createElement('h2');
-//     storeHeading.innerText = this.name;
-//     articleEle.appendChild(storeHeading);
-
-//     let parisUL = document.createElement('ul');
-//     articleEle.appendChild(parisUL);
-
-//     for (let i = 0; i < this.cookiesBought.length; i++) {
-//       let avgCookieByHourLI = document.createElement('li');
-//       avgCookieByHourLI.innerText = `${hours[i]}: ${this.cookiesBought[i]}`;
-//       parisUL.appendChild(avgCookieByHourLI);
-//     }
-//     let totalLI = document.createElement('li');
-//     totalLI.innerText = `Total: ${this.cookiesTotal}`;
-//     parisUL.appendChild(totalLI);
-//   }
-// };
-// console.log(paris);
-
-
-// let lima = {
-//   name: 'Lima',
-//   minCust: 2,
-//   maxCust: 16,
-//   avgCookieBought: 4.6,
-//   cookiesBought: [], // container for simulated cookies
-//   cookiesTotal: 0, // total sim cookies
-
-//   randomCustomerGenerator: function (minCust, maxCust) {
-//     return Math.floor(Math.random() * (maxCust - minCust + 1) + minCust);
-//   },
-//   getCookieCalc: function () {
-//     for (let i = 0; i < hours.length; i++) {
-//       let hourlyCookie = this.avgCookieBought * this.randomCustomerGenerator(this.minCust, this.maxCust);
-//       this.cookiesBought.push(Math.ceil(hourlyCookie));
-//       this.cookiesTotal = this.cookiesTotal + Math.ceil(hourlyCookie);
-//     }
-//   },
-//   render: function () {
-//     this.getCookieCalc();
-
-//     let articleEle = document.createElement('article');
-//     storeSection.appendChild(articleEle);
-
-//     let storeHeading = document.createElement('h2');
-//     storeHeading.innerText = this.name;
-//     articleEle.appendChild(storeHeading);
-
-//     let limaUL = document.createElement('ul');
-//     articleEle.appendChild(limaUL);
-
-//     for (let i = 0; i < this.cookiesBought.length; i++) {
-//       let avgCookieByHourLI = document.createElement('li');
-//       avgCookieByHourLI.innerText = `${hours[i]}: ${this.cookiesBought[i]}`;
-//       limaUL.appendChild(avgCookieByHourLI);
-//     }
-//     let totalLI = document.createElement('li');
-//     totalLI.innerText = `Total: ${this.cookiesTotal}`;
-//     limaUL.appendChild(totalLI);
-//   }
-// };
-// console.log(lima);
+footerFunction();
