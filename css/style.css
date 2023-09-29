@@ -1,9 +1,7 @@
 @charset
 /* Global settings */
 
-
 body {
-  font-family: 'Open Sans', sans-serif;
   background-color: white;
 }
 
@@ -153,29 +151,39 @@ main {
 .buttonContainer {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
+}
+
+.buttonContainer>section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-content: center;
 }
 
 .buttonImg {
   display: flexbox;
-  margin-top: 100px;
+  margin-top: 40px;
   align-items: center;
-  justify-content: center;
+  margin-inline-start: 40px;
 }
 
 .buttonImg>img {
   display: flex;
   position: relative;
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
   margin-bottom: 20px;
+  align-content: center;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .buttonImg>.imgButton1 {
   position: absolute;
-  width: 200px;
-  height: 40px;
+  width: 250px;
+  height: 50px;
   border-radius: 10px;
   background-color: rgb(116, 117, 227);
   padding: 15px 15px;
@@ -189,8 +197,8 @@ main {
 
 .buttonImg>.imgButton2 {
   position: absolute;
-  width: 200px;
-  height: 40px;
+  width: 250px;
+  height: 50px;
   border-radius: 10px;
   background-color: rgb(5, 188, 254);
   padding: 15px 15px;
@@ -204,8 +212,8 @@ main {
 
 .buttonImg>.imgButton3 {
   position: absolute;
-  width: 200px;
-  height: 40px;
+  width: 250px;
+  height: 50px;
   border-radius: 10px;
   background-color: rgb(218, 4, 4);
   padding: 15px 15px;
@@ -220,7 +228,7 @@ main {
 /* Style the location cards */
 section>.card {
   display: inline;
-  margin-top:100px;
+  margin-top: 100px;
 }
 
 .card {
@@ -232,7 +240,6 @@ section>.card {
   justify-content: space-evenly;
   background-color: #d9e7fa;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
 }
 
 .card>h4 {
@@ -279,14 +286,13 @@ footer {
 }
 
 /* bottom navigation */
-.footerLogoImg{
+.footerLogoImg {
   height: 35px;
   width: 100px;
   padding: 10px 10px;
 }
 
 .bottomNav {
-  /* display: flex; */
   padding: 15px;
   justify-content: space-around;
   align-items: center;
@@ -319,6 +325,7 @@ footer {
   font-size: 1.25em;
   margin-bottom: 20px;
 }
+
 .socialMedia>li {
   display: block;
   padding: 8px 16px;
@@ -343,13 +350,13 @@ footer {
   margin-bottom: 20px;
 }
 
-.footRow3>p{
+.footRow3>p {
   padding: 8px 16px;
   margin: 5px;
   color: #ffffff;
 }
 
-.footColumnBtm>h5{
+.footColumnBtm>h5 {
   color: #ffffff;
   margin-bottom: 30px;
 }

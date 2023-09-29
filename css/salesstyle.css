@@ -3,36 +3,54 @@
 
 
 body {
-  display: flex;
   background-color: rgb(255, 255, 255);
 }
 
 header {
-  display: flex;
-  height: 70px;
-  max-width: 100%;
-  background-color: rgb(141, 181, 179);
-  margin: 20px;
-  padding: 20px;
+  width: 100%;
+  overflow: hidden;
+  margin: auto;
+  background-color: #676767;
+  text-align: center;
 }
 
+header img {
+  height: 70px;
+  width: 200px;
+  padding: 20px 20px;
+}
 /* Text */
 h1 {
-  font-size: 4em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  font-size: 3em;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 h2 {
   font-size: 2em;
-  text-align: left;
-  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bolder;
+  margin-top: 140px;
+  margin-bottom: 40px;
 }
 
 h3 {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h4 {
   font-size: 1em;
-  text-align: left;
+  text-align: center;
   margin-bottom: 10px;
+}
+
+h5 {
+  font-size: smaller;
+  text-align: center;
 }
 
 p {
@@ -42,9 +60,12 @@ p {
 }
 
 /* top navigation */
-nav {
+
+.topNav {
   display: flex;
-  padding-top: 30px;
+  padding: 15px;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .topNav ul {
@@ -52,7 +73,6 @@ nav {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
 }
 
 .topNav li {
@@ -60,16 +80,15 @@ nav {
 }
 
 .topNav li a {
-  color: #2d2d2d;
+  color: #ffffff;
   padding: 10px 10px;
-  padding-left: 50px;
+  font-weight: normal;
   text-decoration: none;
 }
-.active {
-  background-color: #66edf9;
-  color: white;
-}
 
+.topNav>.active {
+  background-color: #ffffff;
+}
 /* main  */
 main {
   display: flex;
@@ -116,34 +135,103 @@ td {
   padding: 10px;
   text-align: center;
 }
-
-/* footer design */
 footer {
-  max-width: 100%;
-  margin: 20px;
-  /* padding: 20px; */
+  display: block;
+  background-color: #676767;
 }
+
 .flex-container2 {
   display: flex;
-  background:  rgb(0, 0, 0);
-  height: 100px;
+  flex-direction: footColumn;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
 }
 
-.bottomNav ul {
+.footRow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.footColumn {
+  display: flex;
+  width: 350px;
+  padding: 10px;
+}
+
+/* bottom navigation */
+.footerLogoImg {
+  height: 35px;
+  width: 100px;
+  padding: 10px 10px;
+}
+
+.bottomNav {
+  padding: 15px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.bottomNav>ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  background-color: #333;
 }
 
-.bottomNav li {
+.bottomNav>li {
   display: inline;
 }
 
-.bottomNav li a {
+.bottomNav>li>a {
   color: #ffffff;
-  padding: 10px 10px;
-  padding-left: 50px;
+  display: block;
+  padding: 8px 16px;
   text-decoration: none;
+}
+
+.bottomNav>.active {
+  background-color: #ffffff;
+}
+
+.footColumn>h3 {
+  display: inline;
+  color: #ffffff;
+  font-size: 1.25em;
+  margin-bottom: 20px;
+}
+
+.socialMedia>li {
+  display: block;
+  padding: 8px 16px;
+  margin: 5px;
+  color: #ffffff;
+}
+
+.socialMedia>img {
+  display: block;
+  margin: 10px;
+  background: none;
+}
+
+.footRow3 {
+  display: block;
+}
+
+.footRow3>h3 {
+  display: inline;
+  color: #ffffff;
+  font-size: 1.25em;
+  margin-bottom: 20px;
+}
+
+.footRow3>p {
+  padding: 8px 16px;
+  margin: 5px;
+  color: #ffffff;
+}
+
+.footColumnBtm>h5 {
+  color: #ffffff;
+  margin-bottom: 30px;
 }
