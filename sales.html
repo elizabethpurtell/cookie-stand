@@ -24,9 +24,32 @@
   </header>
   <main>
     <section class="flex-container">
-      <section></section>
       <section>
-        <table></table>
+        <div class="row">
+          <div class="column">
+            <form id="newStoreForm">
+              <fieldset>
+                <legend>New Store Submission Form</legend>
+                <label for="name">New Store Location:
+                  <input type="text" id="name" name="name" placeholder="ex. Seattle"></label>
+                <label for="minCust">Minimum Customers Per Hour:<input type="number" id="minCust"
+                    name="minCust"></label>
+                <label for="maxCust">Maximum Customers Per Hour:<input type="number" id="maxCust"
+                    name="maxCust"></label>
+                <label for="avgCookieBought">Average Number of Cookies Bought By Customers:<input type="number"
+                    id="avgCookieBought" name="avgCookieBought"></label>
+              </fieldset>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="row">
+          <div class="column">
+            <table></table>
+          </div>
+        </div>
       </section>
       <section></section>
     </section>

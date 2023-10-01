@@ -19,54 +19,6 @@ function renderAll() {
   }
 }
 
-// *** HEADER ROW FUNCTION ***
-function headerFunction() {
-  let headerRow = document.createElement('tr');
-  table.appendChild(headerRow);
-
-  let cell = document.createElement('th'); //CREATE EMPTY CELL
-  headerRow.appendChild(cell);
-
-  // ADDS EACH HOUR IN THE ROW
-  for (let i = 0; i < hours.length; i++) {
-    let headerCell = document.createElement('th');
-    headerCell.textContent = hours[i];
-    headerRow.appendChild(headerCell);
-  }
-
-  let totalHeaderCell = document.createElement('th');
-  totalHeaderCell.textContent = 'Daily Location Total';
-  headerRow.appendChild(totalHeaderCell);
-}
-
-// *** FOOTER ROW FUNCTION ***
-
-function footerFunction() {
-  // let footer = document.createElement('footer');
-  // table.appendChild();
-  let footerRow = document.createElement('tr');
-  table.appendChild(footerRow);
-
-  let footerCell = document.createElement('th'); //CREATE total CELL
-  footerCell.textContent = 'Totals';
-  footerRow.appendChild(footerCell);
-
-  for (let i = 0; i < hours.length; i++) { //slow loop
-    let total = 0;
-    for (let j = 0; j < storeArray.cookiesTotal; j++) { //fast loop
-      total += storeArray[j][i];
-    }
-  }
-  // targeting seattle 6am totals
-  // you would type: cityArray[0].randomCookie[0]
-  // tokyo: cityArray[1].randomCookie[0]
-  // dubai: cityArray[2].randomCookie[0]
-  // what is our slow loop: hours array
-  // what is the fast loop: city array
-  // still need to find the total for all the stores, last cell
-  // create a row
-  // create a cell that will populate with each hourly from each location
-}
 
 //  *** CONSTRUCTOR FUNCTION ***
 
@@ -77,6 +29,8 @@ function Store(name, minCust, maxCust, avgCookieBought) {
   this.avgCookieBought = avgCookieBought;
   this.cookiesBought = [];
   this.cookiesTotal = 0;
+  // this.totals = [];
+  // this.grandTotal = [];
 }
 
 //  *** PROTOTYPE METHODS -inherits ***
@@ -114,6 +68,57 @@ Store.prototype.render = function () {
 };
 
 
+// *** HEADER ROW FUNCTION ***
+function headerFunction() {
+  let headerRow = document.createElement('tr');
+  table.appendChild(headerRow);
+
+  let cell = document.createElement('th'); //CREATE EMPTY CELL
+  headerRow.appendChild(cell);
+
+  // ADDS EACH HOUR IN THE ROW
+  for (let i = 0; i < hours.length; i++) {
+    let headerCell = document.createElement('th');
+    headerCell.textContent = hours[i];
+    headerRow.appendChild(headerCell);
+  }
+
+  let totalHeaderCell = document.createElement('th');
+  totalHeaderCell.textContent = 'Daily Location Total';
+  headerRow.appendChild(totalHeaderCell);
+}
+
+// *** FOOTER ROW FUNCTION ***
+// add a row for the footer totals
+
+function renderTableFooter() {
+  let tableFooter = document.createElement('tr');
+  tableFooter.id = 'lastRow';
+  table.appendChild(tableFooter);
+
+  let totals = document.createElement('td'); //CREATE total CELL
+  totals.textContent = 'Totals';
+  tableFooter.appendChild(totals);
+
+  let grandTotal = 0;
+
+  for (let i = 0; i < hours.length; i++) { //slow loop
+    let totals = 0;
+    for (let j = 0; j < storeArray.cookiesTotal; j++) { //fast loop
+      totals += storeArray[j].avgCookieByHourTD[i];
+      grandTotal += storeArray[j].avgCookieByHourTD[i];
+    }
+    let hourlyTotals = document.createElement('td');
+    hourlyTotals.textContent = `${totals}`;
+    tableFooter.appendChild(hourlyTotals);
+  }
+  let grandTotalCell = document.createElement('td');
+  grandTotalCell.textContent = `${grandTotal}`;
+  tableFooter.appendChild(grandTotalCell);
+}
+
+
+
 // *** EXECUTABLE CODE (ON PAGE LOAD) ***
 
 let seattle = new Store('Seattle', 23, 65, 6.3);
@@ -125,4 +130,33 @@ let lima = new Store('Lima', 2, 16, 4.6);
 storeArray.push(seattle, tokyo, dubai, paris, lima);
 headerFunction();
 renderAll();
-footerFunction();
+renderTableFooter();
+
+
+//  *** FORM SUBMISSION EVENT LISTENER AND HANDLER ***
+let myStoreForm = document.getElementById('newStoreForm');
+
+function handleSubmit(event) {
+  event.preventDefault(); // keeps info from dumping to random server. this keeps infor loading into our table
+
+  // taking the info from the inputs on the form value and storing it in the variable
+  let name = event.target.name.value;
+  let minCust = +event.target.minCust.value;
+  let maxCust = +event.target.maxCust.value;
+  let avgCookieBought = +event.target.avgCookieBought.value;
+
+  // declaring a new variable with the value of the new key constructor
+  let newCookieStore = new Store(name, minCust, maxCust, avgCookieBought);
+
+  table.deleteRow(-1);
+
+  newCookieStore.renderList();
+
+  renderTableFooter();
+
+  myStoreForm.reset();
+
+}
+
+myStoreForm.addEventListener('submit', handleSubmit); // handleSubmit is a callback
+
