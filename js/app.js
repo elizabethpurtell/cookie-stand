@@ -150,7 +150,7 @@ function handleSubmit(event) {
 
   table.deleteRow(-1);
 
-  newCookieStore.renderList();
+  newCookieStore.render();
 
   renderTableFooter();
 
