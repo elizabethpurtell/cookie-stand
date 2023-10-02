@@ -29,8 +29,8 @@ function Store(name, minCust, maxCust, avgCookieBought) {
   this.avgCookieBought = avgCookieBought;
   this.cookiesBought = [];
   this.cookiesTotal = 0;
-  // this.totals = [];
-  // this.grandTotal = [];
+  // this.totals = 0;
+  // this.grandTotal = 0;
 }
 
 //  *** PROTOTYPE METHODS -inherits ***
@@ -104,9 +104,9 @@ function renderTableFooter() {
 
   for (let i = 0; i < hours.length; i++) { //slow loop
     let totals = 0;
-    for (let j = 0; j < storeArray.cookiesTotal; j++) { //fast loop
-      totals += storeArray[j].avgCookieByHourTD[i];
-      grandTotal += storeArray[j].avgCookieByHourTD[i];
+    for (let j = 0; j < storeArray.length; j++) { //fast loop
+      totals += storeArray[j].cookiesBought[i];
+      grandTotal += storeArray[j].cookiesBought[i];
     }
     let hourlyTotals = document.createElement('td');
     hourlyTotals.textContent = `${totals}`;
