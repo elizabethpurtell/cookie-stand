@@ -5,7 +5,6 @@ const storeArray = [];
 
 // *** WINDOW INTO THE DOM ***
 
-// let storeSection = document.getElementById('storeSection');
 let table = document.querySelector('table');
 
 let hours = ['6:00AM', '7:00AM', '8:00AM', '9:00AM', '10:00AM', '11:00AM', '12:00PM', '1:00PM', '2:00PM', '3:00PM', '4:00PM', '5:00PM', '6:00PM', '7:00PM', '8:00PM'];
@@ -29,8 +28,6 @@ function Store(name, minCust, maxCust, avgCookieBought) {
   this.avgCookieBought = avgCookieBought;
   this.cookiesBought = [];
   this.cookiesTotal = 0;
-  // this.totals = 0;
-  // this.grandTotal = 0;
 }
 
 //  *** PROTOTYPE METHODS -inherits ***
@@ -73,10 +70,9 @@ function headerFunction() {
   let headerRow = document.createElement('tr');
   table.appendChild(headerRow);
 
-  let cell = document.createElement('th'); //CREATE EMPTY CELL
+  let cell = document.createElement('th');
   headerRow.appendChild(cell);
 
-  // ADDS EACH HOUR IN THE ROW
   for (let i = 0; i < hours.length; i++) {
     let headerCell = document.createElement('th');
     headerCell.textContent = hours[i];
@@ -89,22 +85,21 @@ function headerFunction() {
 }
 
 // *** FOOTER ROW FUNCTION ***
-// add a row for the footer totals
 
 function renderTableFooter() {
   let tableFooter = document.createElement('tr');
   tableFooter.id = 'lastRow';
   table.appendChild(tableFooter);
 
-  let totals = document.createElement('td'); //CREATE total CELL
+  let totals = document.createElement('td');
   totals.textContent = 'Totals';
   tableFooter.appendChild(totals);
 
   let grandTotal = 0;
 
-  for (let i = 0; i < hours.length; i++) { //slow loop
+  for (let i = 0; i < hours.length; i++) {
     let totals = 0;
-    for (let j = 0; j < storeArray.length; j++) { //fast loop
+    for (let j = 0; j < storeArray.length; j++) {
       totals += storeArray[j].cookiesBought[i];
       grandTotal += storeArray[j].cookiesBought[i];
     }
@@ -137,15 +132,13 @@ renderTableFooter();
 let myStoreForm = document.getElementById('newStoreForm');
 
 function handleSubmit(event) {
-  event.preventDefault(); // keeps info from dumping to random server. this keeps infor loading into our table
+  event.preventDefault();
 
-  // taking the info from the inputs on the form value and storing it in the variable
   let name = event.target.name.value;
   let minCust = +event.target.minCust.value;
   let maxCust = +event.target.maxCust.value;
   let avgCookieBought = +event.target.avgCookieBought.value;
 
-  // declaring a new variable with the value of the new key constructor
   let newCookieStore = new Store(name, minCust, maxCust, avgCookieBought);
 
   table.deleteRow(-1);
@@ -158,5 +151,5 @@ function handleSubmit(event) {
 
 }
 
-myStoreForm.addEventListener('submit', handleSubmit); // handleSubmit is a callback
+myStoreForm.addEventListener('submit', handleSubmit);
 

@@ -1,8 +1,8 @@
-@charset
 /* Global settings */
 
 body {
-  background-color: white;
+  background: rgb(171, 255, 225);
+  background: linear-gradient(0deg, rgba(171, 255, 225, 1) 8%, rgba(255, 241, 191, 1) 50%, rgba(241, 253, 255, 1) 100%);
 }
 
 header {
@@ -21,7 +21,8 @@ header img {
 
 /* Text */
 h1 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
   text-transform: uppercase;
   font-size: 3em;
   text-align: center;
@@ -29,31 +30,40 @@ h1 {
 }
 
 h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
   font-size: 2em;
   text-align: center;
-  font-weight: bolder;
-  margin-top: 140px;
+  margin-top: 100px;
   margin-bottom: 40px;
 }
 
 h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   font-size: 1.5em;
   text-align: center;
   margin-bottom: 20px;
 }
 
 h4 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
   font-size: 1em;
   text-align: center;
   margin-bottom: 10px;
 }
 
 h5 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   font-size: smaller;
   text-align: center;
 }
 
 p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   font-size: 1em;
   text-align: left;
   margin-bottom: 5px;
@@ -80,14 +90,16 @@ p {
 }
 
 .topNav li a {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1.25em;
   color: #ffffff;
-  padding: 10px 10px;
-  font-weight: normal;
+  padding: 16px 16px;
   text-decoration: none;
 }
 
-.topNav>.active {
-  background-color: #ffffff;
+.topNav .active {
+  background-color: #77079fc3;
 }
 
 /* main  */
@@ -118,7 +130,6 @@ main {
   display: contents;
   padding: 20px;
   margin: 60px 80px;
-  /* max-height: 200px; */
 }
 
 .row:after {
@@ -155,7 +166,7 @@ main {
   justify-content: center;
 }
 
-.buttonContainer>section {
+.buttonContainer section {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -170,7 +181,7 @@ main {
   margin-inline-start: 40px;
 }
 
-.buttonImg>img {
+.buttonImg img {
   display: flex;
   position: relative;
   height: 250px;
@@ -185,9 +196,10 @@ main {
   width: 250px;
   height: 50px;
   border-radius: 10px;
-  background-color: rgb(116, 117, 227);
-  padding: 15px 15px;
-  font-size: 16px;
+  border: 4px double #cccccc;
+  background-color: rgb(7, 134, 100);
+  padding: 10px 10px;
+  font-size: 14px;
   color: white;
   text-align: center;
   text-transform: uppercase;
@@ -200,9 +212,10 @@ main {
   width: 250px;
   height: 50px;
   border-radius: 10px;
-  background-color: rgb(5, 188, 254);
-  padding: 15px 15px;
-  font-size: 16px;
+  border: 4px double #cccccc;
+  background-color: rgb(7, 134, 100);
+  padding: 10px 10px;
+  font-size: 14px;
   color: white;
   text-align: center;
   text-transform: uppercase;
@@ -215,9 +228,10 @@ main {
   width: 250px;
   height: 50px;
   border-radius: 10px;
-  background-color: rgb(218, 4, 4);
-  padding: 15px 15px;
-  font-size: 16px;
+  border: 4px double #cccccc;
+  background-color: rgb(7, 134, 100);
+  padding: 10px 10px;
+  font-size: 14px;
   color: white;
   text-align: center;
   text-transform: uppercase;
@@ -234,31 +248,38 @@ section>.card {
 .card {
   display: inline;
   width: 180px;
-  /* height: 250px; */
   padding: 20px;
   margin: 20px;
+  border-radius: 10px;
+  border: 4px double #cccccc;
   justify-content: space-evenly;
-  background-color: #d9e7fa;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #7e9dfb;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
 }
 
+/* location cards h4-city, h5-address,call,hours */
 .card>h4 {
   text-align: center;
-  font-weight: bold;
-  font-size: 1.5em;
+  font-weight: 500;
+  font-size: 1.75em;
   margin-bottom: 20px;
 }
 
 .card>h5 {
   text-align: center;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1em;
   margin: 10px;
 }
 
 .card>p {
   text-align: center;
+  font-weight: 300;
+  font-size: 1em;
+  margin-bottom: 10px;
 }
+
+/* footer */
 
 footer {
   display: block;
@@ -315,8 +336,8 @@ footer {
   text-decoration: none;
 }
 
-.bottomNav>.active {
-  background-color: #ffffff;
+.bottomNav .active {
+  background-color: #77079fc3;
 }
 
 .footColumn>h3 {
@@ -333,14 +354,23 @@ footer {
   color: #ffffff;
 }
 
-.socialMedia>img {
+.socialMedia li img {
   display: block;
-  margin: 10px;
-  background: none;
+  height: 25px;
+  width: 25px;
 }
 
 .footRow3 {
   display: block;
+}
+
+.footLine {
+  display: flex;
+  border: none;
+  justify-content: center;
+  width: 500px;
+  border-top: 2px solid white;
+  margin-bottom: 20px;
 }
 
 .footRow3>h3 {

@@ -1,9 +1,9 @@
-@charset
 /* Global */
 
 
 body {
-  background-color: rgb(255, 255, 255);
+  background: rgb(171, 255, 225);
+  background: linear-gradient(0deg, rgba(171, 255, 225, 1) 8%, rgba(255, 241, 191, 1) 50%, rgba(241, 253, 255, 1) 100%);
 }
 
 header {
@@ -19,9 +19,11 @@ header img {
   width: 200px;
   padding: 20px 20px;
 }
+
 /* Text */
 h1 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
   text-transform: uppercase;
   font-size: 3em;
   text-align: center;
@@ -29,31 +31,40 @@ h1 {
 }
 
 h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
   font-size: 2em;
   text-align: center;
-  font-weight: bolder;
-  margin-top: 140px;
+  margin-top: 100px;
   margin-bottom: 40px;
 }
 
 h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   font-size: 1.5em;
   text-align: center;
   margin-bottom: 20px;
 }
 
 h4 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
   font-size: 1em;
   text-align: center;
   margin-bottom: 10px;
 }
 
 h5 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   font-size: smaller;
   text-align: center;
 }
 
 p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   font-size: 1em;
   text-align: left;
   margin-bottom: 5px;
@@ -80,15 +91,18 @@ p {
 }
 
 .topNav li a {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1.25em;
   color: #ffffff;
-  padding: 10px 10px;
-  font-weight: normal;
+  padding: 16px 16px;
   text-decoration: none;
 }
 
-.topNav>.active {
-  background-color: #ffffff;
+.topNav .active {
+  background-color: #77079fc3;
 }
+
 /* main  */
 
 main {
@@ -105,7 +119,7 @@ main {
   justify-content: center;
 }
 
-.flex-container>section {
+.flex-container section {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -135,14 +149,17 @@ main {
 
 #newStoreForm {
   display: grid;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
-  padding: 2rem;
+  border-radius: 10px;
+  border: 4px double #cccccc;
+  padding: 20px;
   margin: auto;
-  margin-top: 4rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
   height: 400px;
   width: 450px;
-  background-color: #b4c9c9;
+  background-color: rgb(101, 155, 189);
 }
 
 form {
@@ -150,16 +167,17 @@ form {
 }
 
 form p {
-  font-size: 1rem;
+  font-weight: 300;
+  font-size: 1em;
   margin-top: 0.5rem;
 }
 
- legend {
+legend {
   font-weight: 700;
-  font-size: larger;
+  font-size: 20px;
   margin-bottom: 30px;
   text-align: center;
- }
+}
 
 input {
   display: grid;
@@ -168,21 +186,23 @@ input {
 }
 
 button {
-  font-size: 1rem;
-  width: max-content;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 10px;
+  border: 4px double #cccccc;
+  width: 160px;
   margin-top: 10px;
   cursor: pointer;
   padding: 10px;
 }
 
 button[type="submit"] {
-  background-color: hsl(273, 73%, 50%);
-  color: white;
+  background-color: hsl(0, 100%, 50%);
+  color: rgb(0, 0, 0);
 }
 
 button[type="submit"]:hover {
-  background-color: hsl(123, 100%, 50%);
-  color: black;
+  background-color: hsl(259, 52%, 38%);
 }
 
 
@@ -194,15 +214,19 @@ table.b {
 }
 
 th {
-  background-color: rgb(200, 218, 250);
+  background-color: rgb(255, 111, 241);
 }
 
 tr:hover {
-  background-color: aqua;
+  background-color: rgb(0, 255, 13);
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #aed6fe;
+}
+
+tr:nth-child(odd) {
+  background-color: #c0ffef;
 }
 
 table,
@@ -271,8 +295,8 @@ footer {
   text-decoration: none;
 }
 
-.bottomNav>.active {
-  background-color: #ffffff;
+.bottomNav .active {
+  background-color: #77079fc3;
 }
 
 .footColumn>h3 {
@@ -289,14 +313,23 @@ footer {
   color: #ffffff;
 }
 
-.socialMedia>img {
+.socialMedia li img {
   display: block;
-  margin: 10px;
-  background: none;
+  height: 25px;
+  width: 25px;
 }
 
 .footRow3 {
   display: block;
+}
+
+.footLine {
+  display: flex;
+  border: none;
+  justify-content: center;
+  width: 500px;
+  border-top: 2px solid white;
+  margin-bottom: 20px;
 }
 
 .footRow3>h3 {
