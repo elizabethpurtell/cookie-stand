@@ -23,6 +23,7 @@ header img {
 h1 {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
+  color: #864e20;
   text-transform: uppercase;
   font-size: 3em;
   text-align: center;
@@ -55,14 +56,14 @@ h4 {
 }
 
 h5 {
-  font-family: 'Roboto', sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-weight: 300;
   font-size: smaller;
   text-align: center;
 }
 
 p {
-  font-family: 'Roboto', sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-weight: 300;
   font-size: 1em;
   text-align: left;
@@ -267,8 +268,8 @@ section>.card {
 
 .card>h5 {
   text-align: center;
-  font-weight: 500;
-  font-size: 1em;
+  font-weight: bold;
+  font-size: 1.25em;
   margin: 10px;
 }
 
